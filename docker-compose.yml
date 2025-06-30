@@ -7,13 +7,24 @@ services:
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         # Add any other gitlab.rb configuration here, each on its own line
-        external_url 'http://192.168.18.215'
-    ports:
-      - '80:80'
-      - '443:443'
-      - '22:22'
+        external_url 'http://git.home'
+    # ports:
+    #   - '80:80'
+    #   - '443:443'
+    #   - '22:22'
     volumes:
       - './GITLAB_HOME/config:/etc/gitlab'
       - './GITLAB_HOME/logs:/var/log/gitlab'
       - './GITLAB_HOME/data:/var/opt/gitlab'
     shm_size: '256m'
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.gitlab.rule=Host(`git.home`)"
+
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
