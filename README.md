@@ -34,5 +34,5 @@ git config --global credential.helper 'cache --timeout=86400'
 ## Test Login
 
 ```sh
-git ls-remote http://192.168.18.215/root/test
+git ls-remote http://git.home/HuzaifaIrfan/HuzaifaIrfan.git/
 ```
